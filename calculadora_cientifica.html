@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Científica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      margin-top: 50px;
+    }
+    .calc-container {
+      background: white;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 70px;
+      padding: 10px;
+      margin: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calc-container">
+    <h2>Calculadora Científica</h2>
+    <input type="text" id="tela" placeholder="0" disabled><br>
+
+    <!-- Botões de números e operadores -->
+    <div>
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="add('/')">/</button>
+      <button onclick="add('Math.sqrt(')">√</button>
+    </div>
+    <div>
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('*')">*</button>
+      <button onclick="add('Math.pow(')">xʸ</button>
+    </div>
+    <div>
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button onclick="add('-')">-</button>
+      <button onclick="add('Math.log10(')">log</button>
+    </div>
+    <div>
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+      <button onclick="calcular()">=</button>
+      <button onclick="add('+')">+</button>
+      <button onclick="add('Math.PI')">π</button>
+    </div>
+    <div>
+      <button onclick="add('Math.sin(')">sin</button>
+      <button onclick="add('Math.cos(')">cos</button>
+      <button onclick="add('Math.tan(')">tan</button>
+      <button onclick="add(')')">)</button>
+    </div>
+    <div>
+      <button onclick="limpar()" style="width: 300px; background: #ff4d4d; color: white;">Limpar</button>
+    </div>
+
+    <p id="resultado">Resultado: 0</p>
+  </div>
+
+  <script>
+    let expressao = "";
+
+    function add(valor) {
+      expressao += valor;
+      document.getElementById("tela").value = expressao;
+    }
+
+    function calcular() {
+      try {
+        const resultado = eval(expressao);
+        document.getElementById("resultado").innerText = "Resultado: " + resultado;
+        expressao = resultado.toString();
+        document.getElementById("tela").value = expressao;
+      } catch {
+        document.getElementById("resultado").innerText = "Erro na expressão!";
+      }
+    }
+
+    function limpar() {
+      expressao = "";
+      document.getElementById("tela").value = "";
+      document.getElementById("resultado").innerText = "Resultado: 0";
+    }
+  </script>
+</body>
+</html>
